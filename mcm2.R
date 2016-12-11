@@ -158,7 +158,7 @@ if(USER.DATA$name != 'admin'){
 
 ## Instrukcja przed etapem zapamiętywania
 
-gui.show.instruction(sprintf("Teraz rozpocznie się zadanie wymagające zapamiętywania i oceny słów. Na ekranie komputera będą się pojawiały, jedno po drugim, różne słowa. Wszystkich słów będzie razem 30. Każde słowo będzie wyświetlane przez kilka sekund.
+gui.show.instruction(sprintf("Teraz rozpocznie się zadanie wymagające zapamiętywania i oceny słów. Na ekranie komputera będą się pojawiały, jedno po drugim, różne słowa. Wszystkich słów będzie razem 30. UWAGA: każde słowo będzie wyświetlane nie dłużej niż kilka sekund.
 
 Należy zaznaczyć za pomocą myszki, przyciskając lewy klawisz, %s
 
@@ -279,6 +279,8 @@ run.trials(leftright.trial.code, condition = cnd, record.session = T, expand.gri
            max.time = 3 * 60000, b = 3 * 60)
 
 gui.show.instruction("Prosimy teraz zapisać na kartce, z pamięci, w dowolnej kolejności, słowa, które pojawiały się na ekranie w zadaniu zapamiętywania i oceny słów. Etap odtwarzania słów będzie trwał około 3 minuty.  W tym czasie nic nie pojawi się na ekranie komputera.
+
+UWAGA: Jeżeli wydaje Ci się, że słowo, które przychodzi Ci do głowy, pojawiło się wcześniej, ale nie jesteś pewny/a, napisz je i tak.
 
 Po upłynięciu 3 minut od momentu naciśnięcia przycisku 'Dalej' ekran zacznie migotać, aby zasygnalizować przejście do następnego etapu.
 
