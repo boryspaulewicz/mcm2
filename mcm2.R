@@ -87,9 +87,9 @@ mcm.trial.code = function(trial, word = 'test', samegender = 'same', scale = 'em
                 center.win(TXT)$move(c(0, WINDOW$get.size()[2] * .1))
                 WINDOW$draw(TXT)
                 value = draw.scale(scales[[as.character(scale)]][-1], position = .7)[1]
-            }
+            }else if(QUICK.SCALE)state = 'done'
             ## Słowo pokazujemy do końca czasu pokazywania słowa, chyba, że QUICK.SCALE
-            if(((CLOCK$time - scale.onset) > PRESENTATION.TIME) | QUICK.SCALE)state = 'done'
+            if((CLOCK$time - scale.onset) > PRESENTATION.TIME)state = 'done'
             WINDOW$display()
         }, 'done' = {
             WINDOW$clear(c(0, 0, 0))
@@ -171,7 +171,7 @@ ifelse(cnd == 'emotion',
 Pozycja kursora przy ocenie słów ma znaczenie - pozycja skrajnie z lewej strony oznacza maksymalnie negatywne skojarzenia, a pozycja skrajnie z prawej strony - maksymalnie pozytywne skojarzenia.",
        "czy dane słowo wydaje się Tobie osobiście łatwe, czy trudne do zapamiętania.
 
-Pozycja kursora przy ocenie słów ma znaczenie - pozycja skrajnie z lewej strony oznacza, że słowo może być dla Ciebie bardzo trudne do zapamiętania na dłużej, a pozycja skrajnie z prawej strony oznacza, że bardzo łatwo będzie Ci na dłuższy czas zapamiętać, że się pojawiło.")))
+Pozycja kursora przy ocenie słów ma znaczenie - pozycja skrajnie z lewej strony oznacza, że słowo może być dla Ciebie bardzo trudne do zapamiętania, a pozycja skrajnie z prawej strony oznacza, że bardzo łatwo będzie Ci zapamiętać, że się pojawiło.")))
 
 memset = sample(1:nrow(words), NOF.ITEMS)
 run.trials(mcm.trial.code, expand.grid(scale = cnd, samegender = 'same',
@@ -352,7 +352,6 @@ FIXATION.TIME = 1000
 POST.FIXATION.TIME = 1000
 PRESENTATION.TIME = 60 * 1000
 QUICK.SCALE = T ## Nie czekamy aż minie presentation time
-
 scales = list(retro = c('', 'Na pewno nie było', 'Raczej nie było', 'Nie wiem', 'Raczej było', 'Na pewno było'))
 ## Tutaj dajemy wszystkie stare i taką samą liczbę nowych bodźców
 memset2 = sample(c(memset, sample((1:nrow(words))[-memset], NOF.ITEMS)))
