@@ -19,7 +19,7 @@ words = readRDS('slowa.RDS')
 FX = fixation(WINDOW, size = .02)
 
 scales = list(emotion = c('', 'Bardzo negatywne', 'Negatywne', 'Neutralne', 'Pozytywne', 'Bardzo pozytywne'),
-              certainty = c('', 'Na pewno nie', 'Raczej nie', 'Trudno powiedzieć', 'Raczej tak', 'Na pewno tak'))
+              certainty = c('Czy przypomnisz sobie później to słowo?', 'Na pewno nie', 'Raczej nie', 'Trudno powiedzieć', 'Raczej tak', 'Na pewno tak'))
 
 ## Test pamięciowy - ocena walencji ze stałym czasem ekspozycji
 mcm.trial.code = function(trial, word = 'test', samegender = 'same', scale = 'emotion'){
@@ -158,7 +158,7 @@ if(USER.DATA$name != 'admin'){
 
 ## Instrukcja przed etapem zapamiętywania
 
-gui.show.instruction(sprintf("Teraz rozpocznie się zadanie wymagające zapamiętywania i oceny słów. Na ekranie komputera będą się pojawiały, jedno po drugim, różne słowa. Każde słowo będzie wyświetlane przez kilka sekund.
+gui.show.instruction(sprintf("Teraz rozpocznie się zadanie wymagające zapamiętywania i oceny słów. Na ekranie komputera będą się pojawiały, jedno po drugim, różne słowa. Wszystkich słów będzie razem 30. Każde słowo będzie wyświetlane przez kilka sekund.
 
 Należy zaznaczyć za pomocą myszki, przyciskając lewy klawisz, %s
 
