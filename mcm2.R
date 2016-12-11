@@ -19,7 +19,7 @@ words = readRDS('slowa.RDS')
 FX = fixation(WINDOW, size = .02)
 
 scales = list(emotion = c('', 'Bardzo negatywne', 'Negatywne', 'Neutralne', 'Pozytywne', 'Bardzo pozytywne'),
-              certainty = c('Czy przypomnisz sobie później to słowo?', 'Na pewno nie', 'Raczej nie', 'Trudno powiedzieć', 'Raczej tak', 'Na pewno tak'))
+              certainty = c('Czy to słowo wydaje się łatwe do zapamiętania?', 'Bardzo trudne', 'Trudne', 'Przeciętne', 'Łatwe', 'Bardzo łatwe'))
 
 ## Test pamięciowy - ocena walencji ze stałym czasem ekspozycji
 mcm.trial.code = function(trial, word = 'test', samegender = 'same', scale = 'emotion'){
@@ -166,12 +166,12 @@ Samo położenie kursora myszki nie wystarczy, należy jeszcze potwierdzić ocen
 
 Należy starać się zapamiętywać wszystkie prezentowane i oceniane słowa, ponieważ na końcu badania będzie trzeba spróbować je sobie przypomnieć.",
 ifelse(cnd == 'emotion',
-       "na ile dane słowo kojarzy się negatywnie, neutralnie lub pozytywnie.
+       "na ile dane słowo Tobie osobiście kojarzy się negatywnie, neutralnie lub pozytywnie.
 
 Pozycja kursora przy ocenie słów ma znaczenie - pozycja skrajnie z lewej strony oznacza maksymalnie negatywne skojarzenia, a pozycja skrajnie z prawej strony - maksymalnie pozytywne skojarzenia.",
-       "na ile jesteś pewny/a, że w dalszej części badania przypomnisz sobie to słowo.
+       "czy dane słowo wydaje się Tobie osobiście łatwe, czy trudne do zapamiętania.
 
-Pozycja kursora przy ocenie słów ma znaczenie - pozycja skrajnie z lewej strony oznacza, że jesteś całkowicie pewny/a, że nie przypomnisz sobie później tego słowa, a pozycja skrajnie z prawej strony oznacza całkowitą pewność, że je sobie przypomnisz.")))
+Pozycja kursora przy ocenie słów ma znaczenie - pozycja skrajnie z lewej strony oznacza, że słowo może być dla Ciebie bardzo trudne do zapamiętania na dłużej, a pozycja skrajnie z prawej strony oznacza, że bardzo łatwo będzie Ci na dłuższy czas zapamiętać, że się pojawiło.")))
 
 memset = sample(1:nrow(words), NOF.ITEMS)
 run.trials(mcm.trial.code, expand.grid(scale = cnd, samegender = 'same',
@@ -280,9 +280,9 @@ run.trials(leftright.trial.code, condition = cnd, record.session = T, expand.gri
 
 gui.show.instruction("Prosimy teraz zapisać na kartce, z pamięci, w dowolnej kolejności, słowa, które pojawiały się na ekranie w zadaniu zapamiętywania i oceny słów. Etap odtwarzania słów będzie trwał około 3 minuty.  W tym czasie nic nie pojawi się na ekranie komputera.
 
-UWAGA: Jeżeli wydaje Ci się, że słowo, które przychodzi Ci do głowy, pojawiło się wcześniej, ale nie jesteś tego pewny/a, napisz je i tak. Później będzie można zaznaczyć, na ile jesteś pewny/a, że słowo faktywnie było prezentowane.
+UWAGA: Jeżeli wydaje Ci się, że słowo, które przychodzi Ci do głowy, pojawiło się wcześniej, ale nie jesteś tego pewny/a, napisz je. Później będzie można zaznaczyć, na ile jesteś pewny/a, że słowo faktywnie było prezentowane.
 
-Po upłynięciu 3 minut od momentu naciśnięcia przycisku 'Dalej' ekran zacznie migotać, aby zasygnalizować przejście do następnego etapu.
+Po upłynięciu 3 minut od momentu naciśnięcia przycisku 'Dalej' ekran zacznie migotać, aby zasygnalizować koniec odtwarzania i przejście do następnego etapu.
 
 Proszę nacisnąć przycisk 'Dalej' w dolnej części okna, aby rozpocząć etap odtwarzania słów z pamięci.")
 
@@ -311,7 +311,7 @@ while(WINDOW$is.open()){
 }
 WINDOW$set.visible(F)
 
-gui.show.instruction("Teraz nastąpi kolejny etap zadania. Obok każdego słowa zapisanego na kartce proszę zaznaczyć, na ile jesteś pewna/pewien, że to słowo było (lub nie było) prezentowane wcześniej w zestawie do zapamiętania.
+gui.show.instruction("Teraz nastąpi kolejny etap zadania. Obok każdego słowa zapisanego na kartce proszę zaznaczyć, na ile jesteś pewna/pewien, że to słowo było prezentowane wcześniej w zestawie do zapamiętania.
 
 1 oznacza, że nie jesteś W OGÓLE pewna/pewny
 
@@ -326,7 +326,7 @@ Po zakończeniu oceny słów proszę nacisnąć przycisk Dalej, znajdujący się
 ######################################################################
 ## Etap rozpoznawania
 
-gui.show.instruction("Teraz Twoim zadaniem będzie rozpoznać, czy różne słowa były w zestawie do zapamiętania, czy może nie pojawiły się wcześniej. Na ekranie komputera znowu będą się pojawiały, jedno po drugim, różne słowa. Każde słowo będzie wyświetlane przez kilka sekund.
+gui.show.instruction("Teraz Twoim zadaniem będzie rozpoznać, czy różne słowa były, czy nie były prezentowane w zestawie do zapamiętania. Na ekranie komputera znowu będą się pojawiały, jedno po drugim, różne słowa. Każde słowo będzie wyświetlane tak długo, aż udzielisz odpowiedzi.
 
 Należy zaznaczyć za pomocą myszki, przyciskając lewy klawisz, czy dane słowo było prezentowane wcześniej i na ile jesteś pewien/pewna, że było.
 
@@ -337,14 +337,12 @@ Samo położenie kursora myszki nie wystarczy, należy jeszcze potwierdzić ocen
 NOF.ITEMS = 10
 FIXATION.TIME = 1000
 POST.FIXATION.TIME = 1000
-PRESENTATION.TIME = 5000
+PRESENTATION.TIME = 60 * 1000
 QUICK.SCALE = T ## Nie czekamy aż minie presentation time
 
 scales = list(retro = c('', 'Na pewno nie było', 'Raczej nie było', 'Nie wiem', 'Raczej było', 'Na pewno było'))
 ## Tutaj dajemy wszystkie stare i taką samą liczbę nowych bodźców
-memset2 = c(memset, sample((1:nrow(words))[-memset], NOF.ITEMS))
-## Dla potrzeb testowania
-print(list(memset, memset2))
+memset2 = sample(c(memset, sample((1:nrow(words))[-memset], NOF.ITEMS)))
 TASK.NAME <<- 'mcm2_recognition'
 run.trials(mcm.trial.code, expand.grid(scale = 'retro', samegender = 'same',
                                        word = as.vector(as.matrix(words[memset2,]))),
