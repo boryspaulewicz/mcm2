@@ -280,7 +280,7 @@ run.trials(leftright.trial.code, condition = cnd, record.session = T, expand.gri
 
 gui.show.instruction("Prosimy teraz zapisać na kartce, z pamięci, w dowolnej kolejności, słowa, które pojawiały się na ekranie w zadaniu zapamiętywania i oceny słów. Etap odtwarzania słów będzie trwał około 3 minuty.  W tym czasie nic nie pojawi się na ekranie komputera.
 
-UWAGA: Jeżeli wydaje Ci się, że słowo, które przychodzi Ci do głowy, pojawiło się wcześniej, ale nie jesteś pewny/a, napisz je i tak.
+UWAGA: Jeżeli wydaje Ci się, że słowo, które przychodzi Ci do głowy, pojawiło się wcześniej, ale nie jesteś tego pewny/a, napisz je i tak. Później będzie można zaznaczyć, na ile jesteś pewny/a, że słowo faktywnie było prezentowane.
 
 Po upłynięciu 3 minut od momentu naciśnięcia przycisku 'Dalej' ekran zacznie migotać, aby zasygnalizować przejście do następnego etapu.
 
