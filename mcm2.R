@@ -79,17 +79,17 @@ mcm.trial.code = function(trial, word = 'test', samegender = 'same', scale = 'em
             TXT$set.string(word)
             center.win(TXT)## $move(c(0, WINDOW$get.size()[2] * -.2))
             WINDOW$draw(TXT)
-            ## Pokazujemy skalę tylko dopóki nie zaznaczy odpowiedzi
+            ## Pokazujemy skalę tylko dopóki nie zaznaczy odpowiedzi,
+            ## albo nie minie maksymalny czas
             if(BUTTON.PRESSED[1] <= scale.onset){
                 ## Pytanie dla skali (np. jak łatwo jest sobie wyobrazić...)
                 TXT$set.string(scales[[as.character(scale)]][1])
                 center.win(TXT)$move(c(0, WINDOW$get.size()[2] * .1))
                 WINDOW$draw(TXT)
                 value = draw.scale(scales[[as.character(scale)]][-1], position = .7)[1]
-            }else{
-                ## Słowo pokazujemy do końca czasu pokazywania słowa, chyba, że QUICK.SCALE
-                if(((CLOCK$time - scale.onset) > PRESENTATION.TIME) | QUICK.SCALE)state = 'done'
             }
+            ## Słowo pokazujemy do końca czasu pokazywania słowa, chyba, że QUICK.SCALE
+            if(((CLOCK$time - scale.onset) > PRESENTATION.TIME) | QUICK.SCALE)state = 'done'
             WINDOW$display()
         }, 'done' = {
             WINDOW$clear(c(0, 0, 0))
