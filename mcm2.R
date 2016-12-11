@@ -292,6 +292,7 @@ while((CLOCK$time - recall.start) < 3 * 60 * 1000){
     if(WINDOW$is.open())process.inputs()
     WINDOW$clear(c(0, 0, 0))
     WINDOW$display()
+    if(KEY.PRESSED[Key.Escape + 1] > recall.start)break
 }
 ## Migotanie
 blinking.start = CLOCK$time
@@ -322,6 +323,18 @@ gui.show.instruction("Teraz nastąpi kolejny etap zadania. Obok każdego słowa 
 4 oznacza, że jesteś CAŁKOWICIE pewna/pewny
 
 Po zakończeniu oceny słów proszę nacisnąć przycisk Dalej, znajdujący się w dolnej części ekranu.")
+
+gui.show.instruction("Proszę się upewnić, że obok każdego zapisanego słowa jest też liczba, która odpowiada temu, na ile jesteś pewny/a, że słowo to było prezentowane wcześniej w zestawie do zapamiętania. Przypominamy klucz odpowiedzi:
+
+1 oznacza, że nie jesteś W OGÓLE pewna/pewny
+
+2 oznacza, że jesteś NIEZBYT pewna/pewny
+
+3 oznacza, że jesteś RACZEJ pewna/pewny
+
+4 oznacza, że jesteś CAŁKOWICIE pewna/pewny
+
+Jeżeli nie każde słowo zostało w ten sposób oznaczone, proszę uzupełnić brakujące informacje. Jeżeli wszystkie słowa są w ten sposób oznaczone, można nacisnąć przycisk Dalej, znajdujący się w dolnej części ekranu.")
 
 ######################################################################
 ## Etap rozpoznawania
