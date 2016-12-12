@@ -355,6 +355,8 @@ QUICK.SCALE = T ## Nie czekamy aż minie presentation time
 scales = list(retro = c('', 'Na pewno nie było', 'Raczej nie było', 'Nie wiem', 'Raczej było', 'Na pewno było'))
 ## Tutaj dajemy wszystkie stare i taką samą liczbę nowych bodźców
 memset2 = sample(c(memset, sample((1:nrow(words))[-memset], NOF.ITEMS)))
+print("Zestaw do rozpoznawania:")
+print(words[memset2,])
 TASK.NAME <<- 'mcm2_recognition'
 run.trials(mcm.trial.code, expand.grid(scale = 'retro', samegender = 'same',
                                        word = as.vector(as.matrix(words[memset2,]))),
