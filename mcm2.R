@@ -77,6 +77,8 @@ mcm.trial.code = function(trial, word = 'test', samegender = 'same', scale = 'em
             WINDOW$clear(c(0, 0, 0))
             ## Rysujemy słowo
             TXT$set.string(word)
+            ## Na wszelki wypadek
+            TXT$set.color(c(1, 1, 1))
             center.win(TXT)## $move(c(0, WINDOW$get.size()[2] * -.2))
             WINDOW$draw(TXT)
             ## Pokazujemy skalę tylko dopóki nie zaznaczy odpowiedzi,
@@ -84,6 +86,8 @@ mcm.trial.code = function(trial, word = 'test', samegender = 'same', scale = 'em
             if(BUTTON.PRESSED[1] <= scale.onset){
                 ## Pytanie dla skali (np. jak łatwo jest sobie wyobrazić...)
                 TXT$set.string(scales[[as.character(scale)]][1])
+                ## Na wszelki wypadek
+                TXT$set.color(c(1, 1, 1))
                 center.win(TXT)$move(c(0, WINDOW$get.size()[2] * .1))
                 WINDOW$draw(TXT)
                 value = draw.scale(scales[[as.character(scale)]][-1], position = .7)[1]
@@ -375,8 +379,6 @@ QUICK.SCALE = T ## Nie czekamy aż minie presentation time
 scales = list(retro = c('', 'Na pewno nie było', 'Raczej nie było', 'Nie wiem', 'Raczej było', 'Na pewno było'))
 ## Tutaj dajemy wszystkie stare i taką samą liczbę nowych bodźców
 memset2 = sample(c(memset, sample((1:nrow(words))[-memset], NOF.ITEMS)))
-print("Zestaw do rozpoznawania:")
-print(words[memset2,])
 TASK.NAME <<- 'mcm2_recognition'
 run.trials(mcm.trial.code, expand.grid(scale = 'retro', samegender = 'same',
                                        word = as.vector(as.matrix(words[memset2,]))),
