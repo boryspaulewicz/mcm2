@@ -266,7 +266,6 @@ leftright.trial.code = function(trial, side = 'left'){
     }
 }
 
-TASK.NAME <<- 'leftright'
 gui.show.instruction("Teraz rozpocznie się zadanie wymagające szybkiego rozpoznawania słów.
 
 Na środku ekranu będą się pojawiały słowa LEWO lub PRAWO.  Gdy tylko pojawi się słowo, należy nacisnąć odpowiednią strzałkę na klawiaturze.  Jeżeli będzie to słowo LEWO, należy nacisnąć klawisz STRZAŁKA W LEWO, a jeżeli słowo PRAWO, to strzałkę STRZAŁKA W PRAWO.
@@ -275,6 +274,7 @@ Program będzie rejestrował zarówno czas reakcji, jak i poprawność. Prosimy 
 
 To zadanie potrwa około 3 minuty")
 
+TASK.NAME <<- 'leftright'
 run.trials(leftright.trial.code, condition = cnd, record.session = T, expand.grid(side = c('left', 'right')),
            max.time = 3 * 60000, b = 3 * 60)
 
