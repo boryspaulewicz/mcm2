@@ -316,6 +316,8 @@ while(WINDOW$is.open()){
 }
 ## Musimy się upewnić, że tekst jest na biało
 TXT$set.color(c(1, 1, 1))
+WINDOW$clear(c(0, 0, 0))
+WINDOW$display()
 WINDOW$set.visible(F)
 
 gui.show.instruction("Teraz nastąpi kolejny etap zadania. Obok każdego słowa zapisanego na kartce proszę zaznaczyć, na ile jesteś pewna/pewien, że to słowo było prezentowane wcześniej w zestawie do zapamiętania.
