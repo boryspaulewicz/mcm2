@@ -363,6 +363,7 @@ run.trials(mcm.trial.code, expand.grid(scale = 'retro', samegender = 'same',
 
 if(USER.DATA$name != 'admin'){
     ## Zapamiętujemy dane kwestionariuszowe
+    db.connect()
     panas = as.list(panas)
     names(panas) = paste('i', 1:length(panas), sep = '')
     db.create.data.table(panas, 'mcm2_panas')
@@ -373,6 +374,7 @@ if(USER.DATA$name != 'admin'){
     db.create.data.table(cesd, 'mcm2_cesd')
     cesd$session_id = SESSION.ID
     db.insert.data(cesd, 'mcm2_cesd')
+    db.disconnect()
 }
 
 gui.show.instruction('Dziękujemy za udział w badaniu.
