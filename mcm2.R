@@ -337,6 +337,24 @@ gui.show.instruction("Proszę się upewnić, że obok każdego zapisanego słowa
 Jeżeli nie każde słowo zostało w ten sposób oznaczone, proszę uzupełnić brakujące informacje. Jeżeli wszystkie słowa są w ten sposób oznaczone, można nacisnąć przycisk Dalej, znajdujący się w dolnej części ekranu.")
 
 ######################################################################
+## Zapamiętujemy dane kwestionariuszowe
+
+if(USER.DATA$name != 'admin'){
+    db.connect()
+    panas = as.list(panas)
+    names(panas) = paste('i', 1:length(panas), sep = '')
+    db.create.data.table(panas, 'mcm2_panas')
+    panas$session_id = SESSION.ID
+    db.insert.data(panas, 'mcm2_panas')
+    cesd = as.list(cesd)
+    names(cesd) = paste('i', 1:length(cesd), sep = '')
+    db.create.data.table(cesd, 'mcm2_cesd')
+    cesd$session_id = SESSION.ID
+    db.insert.data(cesd, 'mcm2_cesd')
+    db.disconnect()
+}
+
+######################################################################
 ## Etap rozpoznawania
 
 gui.show.instruction("Teraz Twoim zadaniem będzie rozpoznać, czy różne słowa były, czy nie były prezentowane w zestawie do zapamiętania. Na ekranie komputera znowu będą się pojawiały, jedno po drugim, różne słowa. Każde słowo będzie wyświetlane tak długo, aż udzielisz odpowiedzi.
@@ -362,22 +380,6 @@ run.trials(mcm.trial.code, expand.grid(scale = 'retro', samegender = 'same',
                                        word = as.vector(as.matrix(words[memset2,]))),
            record.session = T,
            condition = cnd)
-
-if(USER.DATA$name != 'admin'){
-    ## Zapamiętujemy dane kwestionariuszowe
-    db.connect()
-    panas = as.list(panas)
-    names(panas) = paste('i', 1:length(panas), sep = '')
-    db.create.data.table(panas, 'mcm2_panas')
-    panas$session_id = SESSION.ID
-    db.insert.data(panas, 'mcm2_panas')
-    cesd = as.list(cesd)
-    names(cesd) = paste('i', 1:length(cesd), sep = '')
-    db.create.data.table(cesd, 'mcm2_cesd')
-    cesd$session_id = SESSION.ID
-    db.insert.data(cesd, 'mcm2_cesd')
-    db.disconnect()
-}
 
 gui.show.instruction('Dziękujemy za udział w badaniu.
 
